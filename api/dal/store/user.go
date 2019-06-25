@@ -9,12 +9,20 @@ func (s *Store) ReadUsers() ([]*model.User, error) {
 
 // ReadUser queries the database for the user that exists for the passed in ID
 func (s *Store) ReadUser(id int) (*model.User, error) {
-	return &model.User{}, nil
+	filters := make(Filters)
+	filters["id"] = id
+	return s.readUser(filters)
 }
 
 // ReadUserByEmail queries the database for the user that exists with the
 // specified email
 func (s *Store) ReadUserByEmail(email string) (*model.User, error) {
+	filters := make(Filters)
+	filters["email"] = email
+	return s.readUser(filters)
+}
+
+func (s *Store) readUser(filters map[string]interface{}) (*model.User, error) {
 	return &model.User{}, nil
 }
 

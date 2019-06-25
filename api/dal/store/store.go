@@ -7,3 +7,5 @@ import "database/sql"
 type Store struct {
 	dbConn *sql.DB
 }
+
+type Filters map[string]interface{}
