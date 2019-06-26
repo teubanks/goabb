@@ -12,6 +12,7 @@ import (
 	"sync"
 
 	goabb "github.com/teubanks/goabb/api/controllers"
+	"github.com/teubanks/goabb/api/dal/store"
 	users "github.com/teubanks/goabb/api/gen/users"
 )
 
@@ -27,6 +28,8 @@ func main() {
 	)
 	flag.Parse()
 
+	db := store.NewStore("postgres", "", "goabb", "localhost")
+
 	// Setup logger. Replace logger with your own log package of choice.
 	var (
 		logger *log.Logger
@@ -40,7 +43,7 @@ func main() {
 		usersSvc users.Service
 	)
 	{
-		usersSvc = goabb.NewUsers(logger)
+		usersSvc = goabb.NewUsers(logger, db)
 	}
 
 	// Wrap the services in endpoints that can be invoked from other services
