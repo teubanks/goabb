@@ -41,6 +41,21 @@ var _ = Service("users", func() {
 		})
 	})
 
+	Method("read_all", func() {
+		// Result describes the method result
+		// Here the result is a simple integer value
+		Result(ArrayOf(User))
+		// HTTP describes the HTTP transport mapping
+		HTTP(func() {
+			// Requests to the service consist of HTTP GET requests
+			// The payload fields are encoded as path parameters
+			GET("/users")
+			// Responses use a "200 OK" HTTP status
+			// The result is encoded in the response body
+			Response(StatusOK)
+		})
+	})
+
 	Method("read", func() {
 		Payload(func() {
 			Attribute("id", Int, "User's database ID")
