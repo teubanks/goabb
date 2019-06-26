@@ -31,3 +31,9 @@ func (s *userssrvc) Read(ctx context.Context, p *users.ReadPayload) (res *users.
 	s.logger.Print("users.read")
 	return
 }
+
+func (s *userssrvc) ReadAll(ctx context.Context) (res []*users.User, err error) {
+	res = []*users.User{}
+	s.logger.Print("users.read_all")
+	return
+}
