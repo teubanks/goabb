@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	userssvr "github.com/teubanks/goabb/api/controllers/gen/http/users/server"
-	users "github.com/teubanks/goabb/api/controllers/gen/users"
+	userssvr "github.com/teubanks/goabb/api/gen/http/users/server"
+	users "github.com/teubanks/goabb/api/gen/users"
 	goahttp "goa.design/goa/v3/http"
 	httpmdlwr "goa.design/goa/v3/http/middleware"
 	"goa.design/goa/v3/middleware"
