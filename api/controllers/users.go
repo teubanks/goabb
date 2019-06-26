@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 
+	"github.com/teubanks/goabb/api/dal"
 	users "github.com/teubanks/goabb/api/gen/users"
 )
 
@@ -11,11 +12,12 @@ import (
 // The example methods log the requests and return zero values.
 type userssrvc struct {
 	logger *log.Logger
+	db     dal.Dal
 }
 
 // NewUsers returns the users service implementation.
-func NewUsers(logger *log.Logger) users.Service {
-	return &userssrvc{logger}
+func NewUsers(logger *log.Logger, db dal.Dal) users.Service {
+	return &userssrvc{logger, db}
 }
 
 // Create implements create.
