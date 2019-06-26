@@ -1,7 +1,6 @@
 package store
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 
@@ -11,13 +10,13 @@ import (
 // Store holds everything needed to communicate with a database. It implements
 // the Dal interface
 type Store struct {
-	dbConn *sql.DB
+	dbConn *sqlx.DB
 }
 
 type Filters map[string]interface{}
 
-func NewStore(user, pass, pgUrl string) *Store {
-	connStr := fmt.Sprintf("user=%s dbname=%s Host=%s sslmode=disable", user, pass, pgUrl)
+func NewStore(user, pass, dbName, pgUrl string) *Store {
+	connStr := fmt.Sprintf("user=%s pass=%s dbname=%s Host=%s sslmode=disable", user, pass, dbName, pgUrl)
 	db, err := sqlx.Connect("postgres", connStr)
 	if err != nil {
 		log.Fatalln(err)
