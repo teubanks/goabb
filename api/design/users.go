@@ -35,6 +35,9 @@ var User = Type("user", func() {
 
 var _ = Service("users", func() {
 	Description("CRUD users")
+	HTTP(func() {
+		Path("/users")
+	})
 
 	Method("create", func() {
 		Payload(UserCreatePayload)
@@ -45,7 +48,7 @@ var _ = Service("users", func() {
 		HTTP(func() {
 			// Requests to the service consist of HTTP GET requests
 			// The payload fields are encoded as path parameters
-			POST("/users")
+			POST("/")
 			// Responses use a "200 OK" HTTP status
 			// The result is encoded in the response body
 			Response(StatusCreated)
@@ -60,7 +63,7 @@ var _ = Service("users", func() {
 		HTTP(func() {
 			// Requests to the service consist of HTTP GET requests
 			// The payload fields are encoded as path parameters
-			GET("/users")
+			GET("/")
 			// Responses use a "200 OK" HTTP status
 			// The result is encoded in the response body
 			Response(StatusOK)
@@ -78,7 +81,7 @@ var _ = Service("users", func() {
 		HTTP(func() {
 			// Requests to the service consist of HTTP GET requests
 			// The payload fields are encoded as path parameters
-			GET("/users/{id}")
+			GET("/{id}")
 			// Responses use a "200 OK" HTTP status
 			// The result is encoded in the response body
 			Response(StatusOK)
@@ -89,7 +92,7 @@ var _ = Service("users", func() {
 		Payload(UserUpdatePayload)
 
 		HTTP(func() {
-			PATCH("/users/{id}")
+			PATCH("/{id}")
 
 			Response(StatusNoContent)
 		})
@@ -101,7 +104,7 @@ var _ = Service("users", func() {
 		})
 
 		HTTP(func() {
-			DELETE("/users/{id}")
+			DELETE("/{id}")
 			Response(StatusOK)
 		})
 	})

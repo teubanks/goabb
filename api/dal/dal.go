@@ -1,12 +1,12 @@
 package dal
 
-import "github.com/outdoorsy/api/model"
+import "github.com/teubanks/goabb/api/dal/models"
 
 type Dal interface {
-	ReadUsers() ([]*model.User, error)
-	ReadUser(id int) (*model.User, error)
-	ReadUserByEmail(email string) (*model.User, error)
-	CreateUser(*model.User) error
-	UpdateUser(*model.User) error
+	ReadUsers() ([]*models.User, error)
+	ReadUser(id int) (*models.User, error)
+	ReadUserByEmail(email string) (*models.User, error)
+	CreateUser(*models.User) error
+	UpdateUser(*models.User) error
 	DeleteUser(id int) error
 }

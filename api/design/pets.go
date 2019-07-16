@@ -28,12 +28,15 @@ var Pet = Type("pet", func() {
 
 var _ = Service("pets", func() {
 	Description("CRUD Pets")
+	HTTP(func() {
+		Path("/pets")
+	})
 
 	Method("create", func() {
 		Payload(PetCreatePayload)
 		Result(Pet)
 		HTTP(func() {
-			POST("pets")
+			POST("/")
 			Response(StatusOK)
 		})
 	})
@@ -45,7 +48,7 @@ var _ = Service("pets", func() {
 
 		Result(Pet)
 		HTTP(func() {
-			GET("pets/{id}")
+			GET("/{id}")
 			Response(StatusOK)
 		})
 	})
@@ -53,7 +56,7 @@ var _ = Service("pets", func() {
 	Method("read_all", func() {
 		Result(ArrayOf(Pet))
 		HTTP(func() {
-			GET("pets")
+			GET("/")
 			Response(StatusOK)
 		})
 	})
@@ -61,7 +64,7 @@ var _ = Service("pets", func() {
 	Method("update", func() {
 		Payload(PetUpdatePayload)
 		HTTP(func() {
-			PATCH("pets/{id}")
+			PATCH("/{id}")
 			Response(StatusNoContent)
 		})
 	})
@@ -72,7 +75,7 @@ var _ = Service("pets", func() {
 		})
 
 		HTTP(func() {
-			DELETE("pets/{id}")
+			DELETE("/{id}")
 			Response(StatusOK)
 		})
 	})

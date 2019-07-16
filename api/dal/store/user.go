@@ -1,8 +1,6 @@
 package store
 
 import (
-	"fmt"
-
 	"github.com/teubanks/goabb/api/dal/models"
 )
 
@@ -34,13 +32,13 @@ func (s *Store) ReadUserByEmail(email string) (*models.User, error) {
 	return s.readUser(filters)
 }
 
-func (s *Store) readUser(filters map[string]interface{}) (*models.User, error) {
+func (s *Store) readUser(filters Filters) (*models.User, error) {
 	var user *models.User
 
 	clauses := []string{}
-	for k, v := range filters {
-		clauses := fmt.Sprintf("k=?")
-	}
+	// for k, v := range filters {
+	// 	clauses := fmt.Sprintf("%s=?", k, )
+	// }
 	if len(clauses) == 0 {
 		return user, nil
 	}
@@ -51,7 +49,8 @@ func (s *Store) readUser(filters map[string]interface{}) (*models.User, error) {
 
 // CreateUser inserts a new user into the system
 func (s *Store) CreateUser(u *models.User) error {
-	return s.dbConn.NamedExec(insertUserStmt, u)
+	_, err := s.dbConn.NamedExec(insertUserStmt, u)
+	return err
 }
 
 // UpdateUser updates the passed in models.User using the members of the passed
@@ -62,5 +61,6 @@ func (s *Store) UpdateUser(u *models.User) error {
 
 // DeleteUser deletes the user that has the specified ID
 func (s *Store) DeleteUser(u *models.User) error {
-	return s.dbConn.Exec(deleteUserStmt, u.ID)
+	_, err := s.dbConn.Exec(deleteUserStmt, u.ID)
+	return err
 }
