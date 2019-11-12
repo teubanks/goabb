@@ -60,7 +60,7 @@ func (s *Store) UpdateUser(u *models.User) error {
 }
 
 // DeleteUser deletes the user that has the specified ID
-func (s *Store) DeleteUser(u *models.User) error {
-	_, err := s.dbConn.Exec(deleteUserStmt, u.ID)
+func (s *Store) DeleteUser(id int) error {
+	_, err := s.dbConn.Exec(deleteUserStmt, id)
 	return err
 }

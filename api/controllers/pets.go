@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	pets "github.com/teubanks/goabb/gen/pets"
+	pets "github.com/teubanks/goabb/api/gen/pets"
 )
 
 // pets service example implementation.

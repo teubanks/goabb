@@ -11,6 +11,7 @@ import (
 
 	userssvr "github.com/teubanks/goabb/api/gen/http/users/server"
 	users "github.com/teubanks/goabb/api/gen/users"
+	"github.com/teubanks/goabb/internal/chimux"
 	goahttp "goa.design/goa/v3/http"
 	httpmdlwr "goa.design/goa/v3/http/middleware"
 	"goa.design/goa/v3/middleware"
@@ -41,7 +42,7 @@ func handleHTTPServer(ctx context.Context, u *url.URL, usersEndpoints *users.End
 	// HTTP requests to the service endpoints.
 	var mux goahttp.Muxer
 	{
-		mux = goahttp.NewMuxer()
+		mux = chimux.New()
 	}
 
 	// Wrap the endpoints with the transport specific layers. The generated
